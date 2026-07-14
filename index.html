@@ -1,1 +1,864 @@
 
+
+Portfolio · HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ava Marlowe — Social Media Strategist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B1B2F;
+    --ink-soft:#4A4A63;
+    --paper:#F2F4EC;
+    --paper-raised:#FFFFFF;
+    --coral:#FF5C4D;
+    --yellow:#FFC93C;
+    --peri:#6C63FF;
+    --titan-green:#0F3D2B;
+    --titan-green-deep:#082017;
+    --line: rgba(27,27,47,0.14);
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  ::selection{background:var(--coral);color:#fff;}
+ 
+  /* focus visibility */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline:2px solid var(--peri); outline-offset:3px;
+  }
+ 
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(242,244,236,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:1180px; margin:0 auto;
+  }
+  .logo{
+    font-family:var(--font-display); font-weight:700; font-size:19px;
+    letter-spacing:0.01em;
+  }
+  .logo span{color:var(--coral);}
+  .nav-links{display:flex; gap:32px; font-size:14.5px; font-weight:600;}
+  .nav-links a{position:relative; padding:4px 0;}
+  .nav-links a:hover{color:var(--coral);}
+  .nav-cta{
+    font-family:var(--font-mono); font-size:13px; font-weight:600;
+    background:var(--ink); color:var(--paper);
+    padding:10px 18px; border-radius:100px;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--coral); color:#fff;}
+  @media (max-width:760px){ .nav-links{display:none;} }
+ 
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:72px 0 96px;
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;
+  }
+  .eyebrow{
+    font-family:var(--font-mono); font-size:12.5px; font-weight:600;
+    letter-spacing:0.14em; text-transform:uppercase; color:var(--peri);
+    display:flex; align-items:center; gap:8px; margin-bottom:18px;
+  }
+  .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--coral);display:inline-block;}
+  .hero h1{
+    font-family:var(--font-display); font-weight:700;
+    font-size:clamp(34px, 4.6vw, 56px); line-height:1.05; letter-spacing:-0.01em;
+    margin-bottom:22px;
+  }
+  .hero h1 em{font-style:normal; color:var(--coral);}
+  .hero p.lede{
+    font-size:17.5px; color:var(--ink-soft); max-width:46ch; margin-bottom:30px;
+  }
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:36px;}
+  .btn-primary{
+    font-family:var(--font-body); font-weight:700; font-size:15px;
+    background:var(--ink); color:var(--paper); padding:14px 26px; border-radius:100px;
+    border:none; cursor:pointer;
+  }
+  .btn-primary:hover{background:var(--coral); color:#fff;}
+  .btn-secondary{
+    font-weight:700; font-size:15px; padding:14px 26px; border-radius:100px;
+    border:1.5px solid var(--ink); background:transparent;
+  }
+  .btn-secondary:hover{border-color:var(--coral); color:var(--coral);}
+  .hero-stats{display:flex; gap:28px; flex-wrap:wrap;}
+  .hero-stat b{font-family:var(--font-mono); font-size:20px; display:block;}
+  .hero-stat span{font-size:12.5px; color:var(--ink-soft);}
+ 
+  /* calendar signature element */
+  .calendar-card{
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 20px 50px -25px rgba(27,27,47,0.35);
+    transform:rotate(1.2deg);
+  }
+  .calendar-head{
+    display:flex; justify-content:space-between; align-items:baseline;
+    margin-bottom:14px; padding-bottom:12px; border-bottom:1px dashed var(--line);
+  }
+  .calendar-head b{font-family:var(--font-mono); font-size:12.5px; letter-spacing:0.06em;}
+  .calendar-head span{font-size:11.5px; color:var(--ink-soft); font-family:var(--font-mono);}
+  .cal-grid{display:grid; grid-template-columns:repeat(7,1fr); gap:6px;}
+  .cal-day{
+    background:var(--paper); border-radius:8px; padding:6px 5px 8px;
+    min-height:78px; display:flex; flex-direction:column; gap:5px;
+    border:1px solid transparent;
+  }
+  .cal-day .d{font-family:var(--font-mono); font-size:10.5px; color:var(--ink-soft);}
+  .cal-post{border-radius:5px; height:16px;}
+  .cal-day.today{background:#fff3ee; border-color:var(--coral);}
+  .cal-day.today .d{color:var(--coral); font-weight:700;}
+  .c1{background:var(--coral);} .c2{background:var(--peri);} .c3{background:var(--yellow);}
+  .calendar-foot{
+    margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;
+  }
+  .chip{
+    font-family:var(--font-mono); font-size:10.5px; font-weight:600;
+    padding:5px 10px; border-radius:100px; border:1px solid var(--line);
+    color:var(--ink-soft);
+  }
+ 
+  /* ---------- SECTION LABELS ---------- */
+  section{padding:88px 0;}
+  .sec-head{margin-bottom:44px; max-width:640px;}
+  .sec-eyebrow{
+    font-family:var(--font-mono); font-size:12px; font-weight:600;
+    letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:10px;
+  }
+  .sec-head h2{
+    font-family:var(--font-display); font-weight:700; font-size:clamp(26px,3vw,36px);
+    letter-spacing:-0.01em;
+  }
+  .sec-head p{color:var(--ink-soft); margin-top:12px; font-size:15.5px;}
+ 
+  /* ---------- ABOUT / QUICK STATS ---------- */
+  .about{
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    background:var(--paper-raised);
+  }
+  .about .wrap{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; padding-top:64px; padding-bottom:64px;}
+  .about p{font-size:16.5px; color:var(--ink-soft); margin-bottom:16px; max-width:52ch;}
+  .about h3{font-family:var(--font-display); font-size:22px; margin-bottom:16px;}
+  .stat-grid{display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--line); border:1px solid var(--line); border-radius:14px; overflow:hidden;}
+  .stat-cell{background:var(--paper-raised); padding:24px 22px;}
+  .stat-cell b{font-family:var(--font-mono); font-size:28px; color:var(--coral); display:block;}
+  .stat-cell span{font-size:13px; color:var(--ink-soft);}
+ 
+  /* ---------- EXPERIENCE (brand audits) ---------- */
+  .experience-grid{display:grid; grid-template-columns:1fr 1fr; gap:26px;}
+  .audit-card{
+    border-radius:18px; overflow:hidden; border:1px solid var(--line);
+    background:var(--paper-raised); box-shadow:0 20px 44px -30px rgba(27,27,47,0.4);
+  }
+  .audit-head{padding:28px 26px; color:#fff;}
+  .audit-head.nykaa{background:linear-gradient(135deg, var(--coral), #b8384f);}
+  .audit-head.titan{background:linear-gradient(135deg, var(--titan-green), var(--titan-green-deep));}
+  .audit-head .company{font-family:var(--font-display); font-weight:700; font-size:25px;}
+  .audit-head .type{font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.08em; text-transform:uppercase; opacity:0.88; margin-top:6px;}
+  .audit-body{padding:24px 26px 26px;}
+  .audit-body p{color:var(--ink-soft); font-size:14.5px; margin-bottom:18px;}
+  .audit-stats{display:flex; gap:22px; flex-wrap:wrap; margin-bottom:18px;}
+  .audit-stats div b{font-family:var(--font-mono); font-size:21px; display:block;}
+  .audit-stats div span{font-size:11px; color:var(--ink-soft);}
+  .audit-card.nykaa .audit-stats b{color:var(--coral);}
+  .audit-card.titan .audit-stats b{color:var(--titan-green);}
+  .audit-tags{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:20px;}
+  .audit-tags span{font-family:var(--font-mono); font-size:10.5px; border:1px solid var(--line); padding:4px 10px; border-radius:100px; color:var(--ink-soft);}
+  .audit-link{font-weight:700; font-size:14px; display:inline-flex; align-items:center; gap:6px;}
+  .audit-card.nykaa .audit-link{color:var(--coral);}
+  .audit-card.titan .audit-link{color:var(--titan-green);}
+  @media (max-width:820px){ .experience-grid{grid-template-columns:1fr;} }
+ 
+  /* ---------- CONTENT CREATED ---------- */
+  .content-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+  .content-tile{border-radius:14px; overflow:hidden; border:1px solid var(--line); background:var(--paper-raised);}
+  .content-visual{
+    aspect-ratio:1/1; position:relative; display:flex; align-items:center; justify-content:center;
+  }
+  .content-visual .format-badge{
+    position:absolute; top:10px; left:10px; font-family:var(--font-mono); font-size:10px;
+    background:rgba(0,0,0,0.45); color:#fff; padding:4px 9px; border-radius:100px; letter-spacing:0.03em;
+  }
+  .content-visual .play-icon{
+    width:42px; height:42px; border-radius:50%; background:rgba(255,255,255,0.28);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .content-visual .play-icon::after{
+    content:""; border-style:solid; border-width:8px 0 8px 13px;
+    border-color:transparent transparent transparent #fff; margin-left:3px;
+  }
+  .content-visual .dots{position:absolute; bottom:10px; left:0; right:0; display:flex; justify-content:center; gap:4px;}
+  .content-visual .dots span{width:5px; height:5px; border-radius:50%; background:rgba(255,255,255,0.6);}
+  .content-visual .dots span:first-child{background:#fff;}
+  .content-meta{padding:13px 14px 15px;}
+  .content-meta .brand{font-family:var(--font-mono); font-size:10.5px; color:var(--ink-soft); margin-bottom:4px; text-transform:uppercase; letter-spacing:0.04em;}
+  .content-meta .cap{font-size:13.5px; line-height:1.35;}
+  @media (max-width:900px){ .content-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .content-grid{grid-template-columns:1fr;} }
+ 
+  /* ---------- WORK GRID (instagram-style) ---------- */
+  .work-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:3px;
+    border:3px solid var(--ink); border-radius:14px; overflow:hidden;
+  }
+  .work-cell{
+    position:relative; aspect-ratio:1/1; overflow:hidden; cursor:pointer;
+    display:flex; align-items:flex-end;
+  }
+  .work-bg{position:absolute; inset:0;}
+  .work-info{
+    position:relative; z-index:2; padding:18px; width:100%;
+    color:#fff;
+  }
+  .work-info .brand{font-family:var(--font-display); font-weight:700; font-size:19px;}
+  .work-info .niche{font-size:12px; opacity:0.85; margin-top:2px;}
+  .work-overlay{
+    position:absolute; inset:0; z-index:1;
+    background:linear-gradient(180deg, rgba(27,27,47,0) 35%, rgba(27,27,47,0.86) 100%);
+    transition:background 0.35s ease;
+  }
+  .work-metrics{
+    position:absolute; inset:0; z-index:3; padding:18px;
+    display:flex; flex-direction:column; justify-content:space-between;
+    background:rgba(27,27,47,0.94);
+    opacity:0; transform:translateY(8px);
+    transition:opacity 0.3s ease, transform 0.3s ease;
+    color:#fff;
+  }
+  .work-cell:hover .work-metrics, .work-cell:focus-within .work-metrics{opacity:1; transform:translateY(0);}
+  .work-cell:hover .work-overlay{opacity:0;}
+  .wm-top .brand{font-family:var(--font-display); font-weight:700; font-size:18px;}
+  .wm-top .tagline{font-size:12.5px; color:#c9c9e0; margin-top:6px; line-height:1.4;}
+  .wm-tags{display:flex; gap:6px; flex-wrap:wrap; margin-top:10px;}
+  .wm-tags span{font-family:var(--font-mono); font-size:10px; border:1px solid rgba(255,255,255,0.3); padding:3px 8px; border-radius:100px;}
+  .wm-stats{display:flex; gap:16px;}
+  .wm-stats div b{display:block; font-family:var(--font-mono); font-size:17px; color:var(--yellow);}
+  .wm-stats div span{font-size:10.5px; color:#c9c9e0;}
+  .work-cell button.viewlink{
+    background:none;border:none;color:inherit;font:inherit;text-align:left;padding:0;
+    display:block; width:100%; height:100%; cursor:pointer;
+  }
+ 
+  /* ---------- PROCESS STRIP ---------- */
+  .process{background:var(--ink); color:var(--paper);}
+  .process .sec-head h2{color:var(--paper);}
+  .process .sec-eyebrow{color:#9d9dc4;}
+  .process .sec-head p{color:#b7b7d1;}
+  .process-strip{display:grid; grid-template-columns:repeat(4,1fr); gap:2px; background:rgba(255,255,255,0.12); border-radius:14px; overflow:hidden;}
+  .proc-cell{background:#232340; padding:26px 22px;}
+  .proc-cell .day{font-family:var(--font-mono); font-size:11.5px; color:var(--yellow); letter-spacing:0.08em; text-transform:uppercase;}
+  .proc-cell h4{font-family:var(--font-display); font-size:19px; margin:10px 0 8px;}
+  .proc-cell p{font-size:13.5px; color:#c3c3de;}
+ 
+  /* ---------- SERVICES (sticky notes) ---------- */
+  .services-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:22px;
+  }
+  .sticky{
+    padding:24px 20px 22px; border-radius:4px;
+    box-shadow:0 12px 24px -14px rgba(27,27,47,0.4);
+    min-height:180px; display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .sticky:nth-child(1){background:var(--yellow); transform:rotate(-2deg);}
+  .sticky:nth-child(2){background:#ffe3e0; transform:rotate(1.5deg);}
+  .sticky:nth-child(3){background:#e4e2ff; transform:rotate(-1deg);}
+  .sticky:nth-child(4){background:#dff2e6; transform:rotate(2deg);}
+  .sticky:nth-child(5){background:#ffe3e0; transform:rotate(-1.5deg);}
+  .sticky:hover{transform:rotate(0deg) scale(1.03); transition:transform 0.25s ease;}
+  .sticky h4{font-family:var(--font-display); font-size:18px; margin-bottom:8px;}
+  .sticky p{font-size:13.5px; color:var(--ink);opacity:0.75;}
+  .sticky .pin{font-family:var(--font-mono); font-size:10.5px; opacity:0.6;}
+ 
+  /* ---------- TESTIMONIALS (DM style) ---------- */
+  .dm-thread{max-width:560px; display:flex; flex-direction:column; gap:14px;}
+  .dm-bubble{
+    background:var(--paper-raised); border:1px solid var(--line); border-radius:18px 18px 18px 4px;
+    padding:16px 18px; max-width:88%;
+  }
+  .dm-bubble p{font-size:15px; color:var(--ink);}
+  .dm-meta{display:flex; align-items:center; gap:10px; margin-top:10px;}
+  .dm-avatar{
+    width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-display); font-weight:700; font-size:12px; color:#fff;
+  }
+  .dm-meta b{font-size:12.5px;}
+  .dm-meta span{font-size:11.5px; color:var(--ink-soft); font-family:var(--font-mono);}
+ 
+  /* ---------- CONTACT ---------- */
+  .contact{background:var(--paper-raised); border-top:1px solid var(--line);}
+  .compose{
+    max-width:640px; border:1px solid var(--line); border-radius:18px; padding:28px;
+    background:var(--paper); box-shadow:0 20px 44px -30px rgba(27,27,47,0.4);
+  }
+  .compose-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;}
+  .compose-head b{font-family:var(--font-mono); font-size:12.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-soft);}
+  .dot-row span{width:8px;height:8px;border-radius:50%;display:inline-block;margin-left:5px;}
+  .field{margin-bottom:14px;}
+  .field label{display:block; font-size:12.5px; font-weight:600; margin-bottom:6px; color:var(--ink-soft);}
+  .field input, .field textarea{
+    width:100%; border:1px solid var(--line); background:var(--paper-raised);
+    border-radius:10px; padding:12px 14px; font-family:var(--font-body); font-size:14.5px; color:var(--ink);
+  }
+  .field textarea{resize:vertical; min-height:90px;}
+  .send-row{display:flex; justify-content:space-between; align-items:center; margin-top:8px;}
+  .send-row .hint{font-size:12px; color:var(--ink-soft);}
+  .socials{display:flex; gap:16px; margin-top:40px; flex-wrap:wrap;}
+  .socials a{font-family:var(--font-mono); font-size:13px; font-weight:600; border-bottom:1px solid var(--line); padding-bottom:2px;}
+  .socials a:hover{color:var(--coral); border-color:var(--coral);}
+ 
+  footer{padding:36px 0; text-align:center; font-size:12.5px; color:var(--ink-soft); font-family:var(--font-mono);}
+ 
+  @media (max-width:900px){
+    .hero{grid-template-columns:1fr;}
+    .about .wrap{grid-template-columns:1fr;}
+    .work-grid{grid-template-columns:repeat(2,1fr);}
+    .process-strip{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:560px){
+    .work-grid{grid-template-columns:1fr;}
+    .process-strip{grid-template-columns:1fr;}
+    .hero-stats{gap:20px;}
+  }
+ 
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+ 
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo">AVA<span>·</span>MARLOWE</div>
+    <nav class="nav-links">
+      <a href="#experience">Experience</a>
+      <a href="#work">Work</a>
+      <a href="#content">Content</a>
+      <a href="#services">Services</a>
+      <a href="#testimonials">Reviews</a>
+    </nav>
+    <a href="#contact" class="nav-cta">Start a project</a>
+  </div>
+</header>
+ 
+<section class="hero">
+  <div class="wrap" style="display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;">
+    <div>
+      <div class="eyebrow">Social Media Strategist · Content Manager</div>
+      <h1>I turn brand feeds into <em>conversations</em> people actually join.</h1>
+      <p class="lede">I plan, write, shoot, and manage social for brands who are tired of posting into the void. Strategy first, content second, vanity metrics never.</p>
+      <div class="hero-ctas">
+        <a href="#work" class="btn-primary">See the work</a>
+        <a href="#contact" class="btn-secondary">Book a call</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><b>6</b><span>years running brand accounts</span></div>
+        <div class="hero-stat"><b>27</b><span>brands grown</span></div>
+        <div class="hero-stat"><b>4.8M+</b><span>organic reach delivered</span></div>
+      </div>
+    </div>
+ 
+    <div class="calendar-card" aria-hidden="true">
+      <div class="calendar-head">
+        <b>THIS WEEK'S QUEUE</b>
+        <span>6 brands · 14 posts</span>
+      </div>
+      <div class="cal-grid">
+        <div class="cal-day"><span class="d">MON</span><div class="cal-post c1"></div><div class="cal-post c2"></div></div>
+        <div class="cal-day"><span class="d">TUE</span><div class="cal-post c3"></div></div>
+        <div class="cal-day today"><span class="d">WED</span><div class="cal-post c2"></div><div class="cal-post c1"></div></div>
+        <div class="cal-day"><span class="d">THU</span><div class="cal-post c1"></div></div>
+        <div class="cal-day"><span class="d">FRI</span><div class="cal-post c3"></div><div class="cal-post c2"></div></div>
+        <div class="cal-day"><span class="d">SAT</span><div class="cal-post c1"></div></div>
+        <div class="cal-day"><span class="d">SUN</span></div>
+      </div>
+      <div class="calendar-foot">
+        <span class="chip">Reels</span>
+        <span class="chip">Carousel</span>
+        <span class="chip">UGC</span>
+        <span class="chip">Story poll</span>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<section class="about" id="about">
+  <div class="wrap">
+    <div>
+      <h3>Hi, I'm Ava.</h3>
+      <p>I've spent the last six years inside brand DMs, comment sections, and content calendars — first in-house at a DTC skincare startup, now running social for founders and marketing teams who want their accounts to feel like a person, not a press release.</p>
+      <p>I work across strategy, content production, community management, and paid social, and I hand off clean reporting so you always know what's working and why.</p>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-cell"><b>+218%</b><span>avg. follower growth, first 6 months</span></div>
+      <div class="stat-cell"><b>4.1%</b><span>avg. engagement rate delivered</span></div>
+      <div class="stat-cell"><b>9</b><span>campaigns that hit 1M+ views</span></div>
+      <div class="stat-cell"><b>92%</b><span>client retention past year one</span></div>
+    </div>
+  </div>
+</section>
+ 
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Client experience</div>
+      <h2>Brand audits</h2>
+      <p>Full Instagram brand audits built for live client presentations — profile health, content pillars, competitor benchmarking, and a clear action plan.</p>
+    </div>
+ 
+    <div class="experience-grid">
+      <div class="audit-card nykaa">
+        <div class="audit-head nykaa">
+          <div class="company">Nykaa</div>
+          <div class="type">Instagram Brand Audit</div>
+        </div>
+        <div class="audit-body">
+          <p>A full-funnel audit of Nykaa's Instagram presence — profile optimization, content pillar breakdown, and a competitor benchmark against 4 other beauty retailers.</p>
+          <div class="audit-stats">
+            <div><b>42</b><span>slides</span></div>
+            <div><b>6</b><span>content pillars mapped</span></div>
+            <div><b>4</b><span>competitors benchmarked</span></div>
+          </div>
+          <div class="audit-tags"><span>Profile audit</span><span>Content strategy</span><span>Competitor analysis</span></div>
+          <a href="#" class="audit-link">View audit deck →</a>
+        </div>
+      </div>
+ 
+      <div class="audit-card titan">
+        <div class="audit-head titan">
+          <div class="company">Titan Watches</div>
+          <div class="type">Instagram Brand Audit</div>
+        </div>
+        <div class="audit-body">
+          <p>An audit of Titan's Instagram built around heritage storytelling — engagement trends by content format, audience sentiment, and a refreshed posting cadence.</p>
+          <div class="audit-stats">
+            <div><b>38</b><span>slides</span></div>
+            <div><b>5</b><span>content pillars mapped</span></div>
+            <div><b>3</b><span>competitors benchmarked</span></div>
+          </div>
+          <div class="audit-tags"><span>Profile audit</span><span>Engagement trends</span><span>Content refresh</span></div>
+          <a href="#" class="audit-link">View audit deck →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Selected campaigns</div>
+      <h2>Work I'm proud to screenshot.</h2>
+      <p>A grid of real strategy behind fictional brands built for this portfolio — hover any tile for the numbers behind the post.</p>
+    </div>
+ 
+    <div class="work-grid">
+ 
+      <div class="work-cell">
+        <button class="viewlink" aria-label="Bloom & Co. case study">
+          <div class="work-bg" style="background:linear-gradient(135deg,#8fae6b,#42633b);"></div>
+          <div class="work-overlay"></div>
+          <div class="work-info"><div class="brand">Bloom & Co.</div><div class="niche">Plant & home goods</div></div>
+          <div class="work-metrics">
+            <div class="wm-top">
+              <div class="brand">Bloom & Co.</div>
+              <div class="tagline">Rebuilt their Instagram around real customer plant shelves instead of studio product shots.</div>
+              <div class="wm-tags"><span>Instagram</span><span>Content strategy</span><span>UGC</span></div>
+            </div>
+            <div class="wm-stats">
+              <div><b>+184%</b><span>followers / 6mo</span></div>
+              <div><b>5.6%</b><span>engagement rate</span></div>
+              <div><b>1.2M</b><span>reach</span></div>
+            </div>
+          </div>
+        </button>
+      </div>
+ 
+      <div class="work-cell">
+        <button class="viewlink" aria-label="Ember Coffee Roasters case study">
+          <div class="work-bg" style="background:linear-gradient(135deg,#8a4b2b,#3b2115);"></div>
+          <div class="work-overlay"></div>
+          <div class="work-info"><div class="brand">Ember Roasters</div><div class="niche">Specialty coffee</div></div>
+          <div class="work-metrics">
+            <div class="wm-top">
+              <div class="brand">Ember Roasters</div>
+              <div class="tagline">Weekly "roast day" TikTok series took their barista culture from local secret to regional name.</div>
+              <div class="wm-tags"><span>TikTok</span><span>Series content</span><span>Community</span></div>
+            </div>
+            <div class="wm-stats">
+              <div><b>2.9M</b><span>video views</span></div>
+              <div><b>+11.4k</b><span>new followers</span></div>
+              <div><b>340%</b><span>site traffic lift</span></div>
+            </div>
+          </div>
+        </button>
+      </div>
+ 
+      <div class="work-cell">
+        <button class="viewlink" aria-label="Nourish Kitchen case study">
+          <div class="work-bg" style="background:linear-gradient(135deg,#e0a13c,#a85d2b);"></div>
+          <div class="work-overlay"></div>
+          <div class="work-info"><div class="brand">Nourish Kitchen</div><div class="niche">Meal-kit startup</div></div>
+          <div class="work-metrics">
+            <div class="wm-top">
+              <div class="brand">Nourish Kitchen</div>
+              <div class="tagline">Launch campaign across Instagram, TikTok, and Pinterest ahead of their Series A.</div>
+              <div class="wm-tags"><span>Multi-platform</span><span>Launch</span><span>Paid social</span></div>
+            </div>
+            <div class="wm-stats">
+              <div><b>18k</b><span>waitlist signups</span></div>
+              <div><b>3.8%</b><span>engagement rate</span></div>
+              <div><b>$1.85</b><span>cost per signup</span></div>
+            </div>
+          </div>
+        </button>
+      </div>
+ 
+      <div class="work-cell">
+        <button class="viewlink" aria-label="Wanderlist Travel App case study">
+          <div class="work-bg" style="background:linear-gradient(135deg,#4c7ea8,#1f3c56);"></div>
+          <div class="work-overlay"></div>
+          <div class="work-info"><div class="brand">Wanderlist</div><div class="niche">Travel app</div></div>
+          <div class="work-metrics">
+            <div class="wm-top">
+              <div class="brand">Wanderlist</div>
+              <div class="tagline">Built a creator-submitted UGC pipeline that now supplies 60% of their feed content.</div>
+              <div class="wm-tags"><span>UGC pipeline</span><span>Creator program</span><span>Instagram</span></div>
+            </div>
+            <div class="wm-stats">
+              <div><b>142</b><span>active creators</span></div>
+              <div><b>+96%</b><span>content output</span></div>
+              <div><b>6.2%</b><span>engagement rate</span></div>
+            </div>
+          </div>
+        </button>
+      </div>
+ 
+      <div class="work-cell">
+        <button class="viewlink" aria-label="Studio Lumen case study">
+          <div class="work-bg" style="background:linear-gradient(135deg,#c76b8a,#5b2740);"></div>
+          <div class="work-overlay"></div>
+          <div class="work-info"><div class="brand">Studio Lumen</div><div class="niche">Wellness & fitness</div></div>
+          <div class="work-metrics">
+            <div class="wm-top">
+              <div class="brand">Studio Lumen</div>
+              <div class="tagline">Founder-led Reels strategy turned the owner into the studio's biggest marketing asset.</div>
+              <div class="wm-tags"><span>Reels</span><span>Founder brand</span><span>Community</span></div>
+            </div>
+            <div class="wm-stats">
+              <div><b>+312%</b><span>followers / year</span></div>
+              <div><b>4.9%</b><span>engagement rate</span></div>
+              <div><b>+58%</b><span>class bookings</span></div>
+            </div>
+          </div>
+        </button>
+      </div>
+ 
+      <div class="work-cell">
+        <button class="viewlink" aria-label="Northwind Analytics case study">
+          <div class="work-bg" style="background:linear-gradient(135deg,#5b5ba6,#232350);"></div>
+          <div class="work-overlay"></div>
+          <div class="work-info"><div class="brand">Northwind</div><div class="niche">B2B SaaS</div></div>
+          <div class="work-metrics">
+            <div class="wm-top">
+              <div class="brand">Northwind Analytics</div>
+              <div class="tagline">Turned a dormant LinkedIn page into the founder's top inbound lead source.</div>
+              <div class="wm-tags"><span>LinkedIn</span><span>Thought leadership</span><span>B2B</span></div>
+            </div>
+            <div class="wm-stats">
+              <div><b>+410%</b><span>impressions</span></div>
+              <div><b>93</b><span>inbound leads</span></div>
+              <div><b>2.1M</b><span>content views</span></div>
+            </div>
+          </div>
+        </button>
+      </div>
+ 
+    </div>
+  </div>
+</section>
+ 
+<section id="content">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Content samples</div>
+      <h2>Content created.</h2>
+      <p>A look at the actual posts, reels, and carousels behind the campaigns above.</p>
+    </div>
+ 
+    <div class="content-grid">
+      <div class="content-tile">
+        <div class="content-visual" style="background:linear-gradient(135deg,#8fae6b,#42633b);">
+          <span class="format-badge">Reel</span>
+          <div class="play-icon"></div>
+        </div>
+        <div class="content-meta"><div class="brand">Bloom & Co.</div><div class="cap">3 plants that survive a black thumb</div></div>
+      </div>
+ 
+      <div class="content-tile">
+        <div class="content-visual" style="background:linear-gradient(135deg,#8a4b2b,#3b2115);">
+          <span class="format-badge">Carousel · 6</span>
+          <div class="dots"><span></span><span></span><span></span><span></span></div>
+        </div>
+        <div class="content-meta"><div class="brand">Ember Roasters</div><div class="cap">Anatomy of a pour-over</div></div>
+      </div>
+ 
+      <div class="content-tile">
+        <div class="content-visual" style="background:linear-gradient(135deg,#e0a13c,#a85d2b);">
+          <span class="format-badge">Static post</span>
+        </div>
+        <div class="content-meta"><div class="brand">Nourish Kitchen</div><div class="cap">Meet the founders</div></div>
+      </div>
+ 
+      <div class="content-tile">
+        <div class="content-visual" style="background:linear-gradient(135deg,#c76b8a,#5b2740);">
+          <span class="format-badge">Story series</span>
+          <div class="play-icon"></div>
+        </div>
+        <div class="content-meta"><div class="brand">Studio Lumen</div><div class="cap">Behind the mat</div></div>
+      </div>
+ 
+      <div class="content-tile">
+        <div class="content-visual" style="background:linear-gradient(135deg,#4c7ea8,#1f3c56);">
+          <span class="format-badge">Reel</span>
+          <div class="play-icon"></div>
+        </div>
+        <div class="content-meta"><div class="brand">Wanderlist</div><div class="cap">Pack with me: carry-on only</div></div>
+      </div>
+ 
+      <div class="content-tile">
+        <div class="content-visual" style="background:linear-gradient(135deg,#5b5ba6,#232350);">
+          <span class="format-badge">LinkedIn carousel</span>
+          <div class="dots"><span></span><span></span><span></span></div>
+        </div>
+        <div class="content-meta"><div class="brand">Northwind Analytics</div><div class="cap">3 metrics your CFO cares about</div></div>
+      </div>
+ 
+      <div class="content-tile">
+        <div class="content-visual" style="background:linear-gradient(135deg, var(--coral), #b8384f);">
+          <span class="format-badge">Carousel · 5</span>
+          <div class="dots"><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+        <div class="content-meta"><div class="brand">Nykaa</div><div class="cap">Audit-led content refresh: before / after</div></div>
+      </div>
+ 
+      <div class="content-tile">
+        <div class="content-visual" style="background:linear-gradient(135deg, var(--titan-green), var(--titan-green-deep));">
+          <span class="format-badge">Carousel · 4</span>
+          <div class="dots"><span></span><span></span><span></span><span></span></div>
+        </div>
+        <div class="content-meta"><div class="brand">Titan Watches</div><div class="cap">Audit sneak peek: heritage storytelling</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<section class="process">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">How a project runs</div>
+      <h2>One campaign week, every week.</h2>
+      <p>The same rhythm behind every brand I manage, condensed into four days.</p>
+    </div>
+    <div class="process-strip">
+      <div class="proc-cell">
+        <div class="day">Day 1 — Discover</div>
+        <h4>Audit & strategy</h4>
+        <p>Audience, competitors, and past performance, distilled into a content pillars doc.</p>
+      </div>
+      <div class="proc-cell">
+        <div class="day">Day 2 — Plan</div>
+        <h4>Calendar & briefs</h4>
+        <p>A month of posts mapped to platform, format, and goal — no guessing what goes out next.</p>
+      </div>
+      <div class="proc-cell">
+        <div class="day">Day 3 — Create</div>
+        <h4>Shoot & write</h4>
+        <p>Scripts, captions, and either shot content or clear briefs handed to your in-house team.</p>
+      </div>
+      <div class="proc-cell">
+        <div class="day">Day 4 — Grow</div>
+        <h4>Post, reply, report</h4>
+        <p>Publishing, community replies, and a monthly report tied back to the original goals.</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">What I take on</div>
+      <h2>Services</h2>
+    </div>
+    <div class="services-grid">
+      <div class="sticky">
+        <div><h4>Content Strategy</h4><p>Pillars, positioning, and a posting plan tied to real business goals.</p></div>
+        <span class="pin">— pinned to Q1 board</span>
+      </div>
+      <div class="sticky">
+        <div><h4>Content Production</h4><p>Shooting, editing, and writing for Reels, TikTok, carousels, and stories.</p></div>
+        <span class="pin">— pinned to shoot list</span>
+      </div>
+      <div class="sticky">
+        <div><h4>Community Management</h4><p>Replies, DMs, and comment moderation that sound like your brand.</p></div>
+        <span class="pin">— pinned to inbox</span>
+      </div>
+      <div class="sticky">
+        <div><h4>Paid Social & Analytics</h4><p>Boosted content, ad support, and reporting that ties back to revenue.</p></div>
+        <span class="pin">— pinned to dashboard</span>
+      </div>
+      <div class="sticky">
+        <div><h4>Creator & UGC Campaigns</h4><p>Sourcing and managing creators to keep your feed stocked with real content.</p></div>
+        <span class="pin">— pinned to creator list</span>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<section id="testimonials">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">From clients' DMs</div>
+      <h2>What it's like to work together.</h2>
+    </div>
+    <div class="dm-thread">
+      <div class="dm-bubble">
+        <p>"Ava rebuilt our entire content system in a month. We stopped guessing what to post and started seeing actual booking numbers move."</p>
+        <div class="dm-meta">
+          <div class="dm-avatar" style="background:var(--coral);">SL</div>
+          <b>Studio Lumen</b><span>Founder</span>
+        </div>
+      </div>
+      <div class="dm-bubble" style="margin-left:auto; border-radius:18px 18px 4px 18px;">
+        <p>"Our LinkedIn used to be dead. Ava turned it into where half our sales calls now come from."</p>
+        <div class="dm-meta">
+          <div class="dm-avatar" style="background:var(--peri);">NA</div>
+          <b>Northwind Analytics</b><span>Head of Marketing</span>
+        </div>
+      </div>
+      <div class="dm-bubble">
+        <p>"She doesn't just post pretty pictures — every piece of content ties back to a number we agreed on upfront."</p>
+        <div class="dm-meta">
+          <div class="dm-avatar" style="background:#42633b;">BC</div>
+          <b>Bloom & Co.</b><span>Owner</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Get in touch</div>
+      <h2>Let's plan your next quarter of content.</h2>
+    </div>
+ 
+    <div class="compose">
+      <div class="compose-head">
+        <b>New message to Ava</b>
+        <div class="dot-row"><span style="background:var(--yellow);"></span><span style="background:var(--coral);"></span><span style="background:var(--peri);"></span></div>
+      </div>
+      <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact">
+        <p style="position:absolute; left:-9999px;" aria-hidden="true">
+          <label>Don't fill this out if you're human: <input name="bot-field"></label>
+        </p>
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" placeholder="Your name" required>
+        </div>
+        <div class="field">
+          <label for="brand">Brand / company</label>
+          <input id="brand" name="brand" type="text" placeholder="Your brand">
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@brand.com" required>
+        </div>
+        <div class="field">
+          <label for="msg">What are you looking for?</label>
+          <textarea id="msg" name="message" placeholder="Tell me a bit about your brand and goals..." required></textarea>
+        </div>
+        <div class="send-row">
+          <span class="hint" id="form-hint">Usually replies within 1–2 business days.</span>
+          <button type="submit" class="btn-primary" id="form-submit">Send</button>
+        </div>
+      </form>
+      <script>
+        (function(){
+          function encode(data){
+            return Object.keys(data).map(function(k){
+              return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
+            }).join("&");
+          }
+          var form = document.getElementById("contact-form");
+          var hint = document.getElementById("form-hint");
+          var btn = document.getElementById("form-submit");
+          form.addEventListener("submit", function(e){
+            e.preventDefault();
+            var data = {};
+            new FormData(form).forEach(function(v,k){ data[k] = v; });
+            btn.disabled = true;
+            btn.textContent = "Sending…";
+            fetch("/", {
+              method: "POST",
+              headers: {"Content-Type": "application/x-www-form-urlencoded"},
+              body: encode(data)
+            }).then(function(){
+              hint.textContent = "Thanks — your message is in. I'll reply within 1–2 business days.";
+              btn.textContent = "Sent ✓";
+              form.reset();
+            }).catch(function(){
+              hint.textContent = "Something went wrong — please email hello@avamarlowe.co directly.";
+              btn.disabled = false;
+              btn.textContent = "Send";
+            });
+          });
+        })();
+      </script>
+    </div>
+ 
+    <div class="socials">
+      <a href="#">Instagram ↗</a>
+      <a href="#">TikTok ↗</a>
+      <a href="#">LinkedIn ↗</a>
+      <a href="#">hello@avamarlowe.co</a>
+    </div>
+  </div>
+</section>
+ 
+<footer>
+  © 2026 AVA MARLOWE · SOCIAL MEDIA STRATEGY — SAMPLE PORTFOLIO
+</footer>
+ 
+</body>
+</html>
+ 
+
